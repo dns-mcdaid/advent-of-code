@@ -1,45 +1,26 @@
-
-enum class Direction {
-    FORWARD,
-    UP,
-    DOWN,
-    ;
-
-    companion object {
-        fun from(string: String): Direction {
-            return values().first { it.name.lowercase() == string }
-        }
-    }
-}
-
-data class Instruction(
-    val direction: Direction,
-    val amount: Int,
-)
-
 object Day02 {
 
+    data class Instruction(
+        val direction: String,
+        val amount: Int,
+    )
+
     data class Position(
-        val horizontal: Int,
-        val depth: Int,
-        val aim: Int,
+        val horizontal: Int = 0,
+        val depth: Int = 0,
+        val aim: Int = 0,
     )
 
     private fun getFinalPosition(inputs: List<Instruction>): Position {
-        return inputs.fold(
-            Position(
-                horizontal = 0,
-                depth = 0,
-                aim = 0,
-            )
-        ) { current, instruction ->
+        return inputs.fold(Position()) { current, instruction ->
             when (instruction.direction) {
-                Direction.FORWARD -> current.copy(
+                "forward" -> current.copy(
                     horizontal = current.horizontal + instruction.amount,
                     depth = current.depth + (current.aim * instruction.amount),
                 )
-                Direction.UP -> current.copy(aim = current.aim - instruction.amount)
-                Direction.DOWN -> current.copy(aim = current.aim + instruction.amount)
+                "up" -> current.copy(aim = current.aim - instruction.amount)
+                "down" -> current.copy(aim = current.aim + instruction.amount)
+                else -> throw IllegalArgumentException("Unsupported direction: ${instruction.direction}")
             }
         }
     }
@@ -59,7 +40,7 @@ object Day02 {
             .map { it.split(" ") }
             .map { (direction, amount) ->
                 Instruction(
-                    direction = Direction.from(direction),
+                    direction = direction,
                     amount = amount.toInt(),
                 )
             }

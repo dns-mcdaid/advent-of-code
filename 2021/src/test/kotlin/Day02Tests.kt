@@ -1,55 +1,56 @@
 import org.junit.Test
 import kotlin.test.assertEquals
+import Day02.Instruction
 
-class Day02Tests {
+class Day02Tests : DayTest<List<Instruction>> {
 
-    private val testData = listOf(
+    override val testData = listOf(
         Instruction(
-            direction = Direction.FORWARD,
+            direction = "forward",
             amount = 5,
         ),
         Instruction(
-            direction = Direction.DOWN,
+            direction = "down",
             amount = 5,
         ),
         Instruction(
-            direction = Direction.FORWARD,
+            direction = "forward",
             amount = 8,
         ),
         Instruction(
-            direction = Direction.UP,
+            direction = "up",
             amount = 3,
         ),
         Instruction(
-            direction = Direction.DOWN,
+            direction = "down",
             amount = 8,
         ),
         Instruction(
-            direction = Direction.FORWARD,
+            direction = "forward",
             amount = 2,
         ),
     )
 
     @Test
-    fun `Test data passes Part 01`() {
+    override fun `Part 01 test data passes`() {
         val result = Day02.determinePosition(testData)
         assertEquals(150, result)
     }
 
     @Test
-    fun `Part 01 actual input passes`() {
+    override fun `Part 01 actual input passes`() {
         val data = Day02.prepareData()
         assertEquals(1670340, Day02.determinePosition(data))
     }
 
     @Test
-    fun `Test data passes Part 02`() {
+    override fun `Part 02 test data passes`() {
         val result = Day02.determinePositionWithAim(testData)
         assertEquals(900, result)
     }
 
     @Test
-    fun `Part 02 actual input passes`() {
+    override fun `Part 02 actual input passes`() {
         val data = Day02.prepareData()
         assertEquals(1954293920, Day02.determinePositionWithAim(data))
     }
