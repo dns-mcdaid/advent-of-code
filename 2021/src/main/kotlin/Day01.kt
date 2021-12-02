@@ -12,7 +12,6 @@ object Day01 {
             .let(::countTimesDepthIncreases)
     }
 
-
     fun prepareData(): List<Int> {
         return Parser.readLines("input_01.txt").map { it.toInt() }
     }
