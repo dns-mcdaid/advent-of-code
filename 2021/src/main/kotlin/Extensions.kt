@@ -17,6 +17,11 @@ fun <T> List<List<T>>.column(index: Int) : List<T> {
     return map { it[index] }
 }
 
+data class Point(
+    val x: Int,
+    val y: Int,
+)
+
 // region BinaryArray
 /**
  * Like a [BooleanArray] but where I don't have to add .toBooleanArray() to the end of every transformer.

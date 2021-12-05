@@ -12,7 +12,7 @@ object Day03 {
 
     fun calculateLifeSupportRating(lines: List<BinaryArray>): Int {
         val o2bits = lines.filterByColumnColumnCount { zeroes, ones ->
-            ones == zeroes || ones > zeroes
+            ones >= zeroes
         }
         val co2bits = lines.filterByColumnColumnCount { zeroes, ones ->
             ones < zeroes && zeroes != ones
