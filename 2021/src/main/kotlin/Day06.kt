@@ -1,21 +1,34 @@
+import java.math.BigDecimal
+
 object Day06 {
 
-    private fun List<Int>.passDay(): List<Int> {
-        var newBabies = 0
-        return map { fish ->
-            when (fish) {
-                0 -> 6.also { newBabies++ }
-                else -> fish - 1
+    fun calculateNumberOfLanternFish(input: List<Int>, days: Int): BigDecimal {
+        val dayToCount = input.groupingBy { it }
+            .eachCount()
+            .mapValues { (_, v) ->
+                v.toBigDecimal()
             }
-        } + List(newBabies) { 8 }
-    }
+            .toMutableMap()
 
-    fun calculateNumberOfLanternFish(input: List<Int>, days: Int): Int {
-        return (1..days).fold(input) { fish, day ->
-            return@fold fish.passDay().also {
-//                println("After $day days: $it")
+        return (1..days).fold(dayToCount) { dict, _ ->
+            val newDict = mutableMapOf<Int, BigDecimal>()
+            for ((k, v) in dict) {
+                when (k) {
+                    0 -> {
+                        newDict[6] = (newDict[6] ?: BigDecimal.ZERO) + v
+                        newDict[8] = v
+                    }
+                    else -> {
+                        newDict[k - 1] = (newDict[k - 1] ?: BigDecimal.ZERO) + v
+                    }
+                }
             }
-        }.size
+            return@fold newDict
+        }
+            .values
+            .fold(BigDecimal.ZERO) { acc, curr ->
+                acc.add(curr)
+            }
     }
 
     fun prepareData(): List<Int> {
