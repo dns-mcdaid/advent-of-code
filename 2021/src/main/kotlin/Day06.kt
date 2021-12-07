@@ -32,9 +32,6 @@ object Day06 {
     }
 
     fun prepareData(): List<Int> {
-        return Parser.readText("input_06.txt")
-            .trim()
-            .split(",")
-            .mapNotNull { it.toIntOrNull() }
+        return Parser.readIntList("input_06.txt")
     }
 }
