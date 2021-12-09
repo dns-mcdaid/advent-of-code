@@ -20,7 +20,16 @@ fun <T> List<List<T>>.column(index: Int) : List<T> {
 data class Point(
     val x: Int,
     val y: Int,
-)
+) {
+
+    val cardinalAdjacent: List<Point>
+        get() = listOf(
+            Point(x, y - 1),
+            Point(x, y + 1),
+            Point(x - 1, y),
+            Point(x + 1, y),
+        )
+}
 
 // region BinaryArray
 /**

@@ -27,11 +27,13 @@ class Day09Tests : DayTest<List<List<Int>>> {
 
     @Test
     override fun `Part 02 test data passes`() {
-        TODO("Not yet implemented")
+        val result = Day09.findBasins(testData)
+        assertEquals(1134, result)
     }
 
     @Test
     override fun `Part 02 actual input passes`() {
-        TODO("Not yet implemented")
+        val result = Day09.findBasins(Day09.prepareData())
+        assertEquals(1076922, result)
     }
 }
