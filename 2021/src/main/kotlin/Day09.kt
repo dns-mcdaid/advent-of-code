@@ -67,8 +67,6 @@ object Day09 {
     }
 
     fun prepareData(lines: List<String> = Parser.readLines("input_09.txt")): List<List<Int>> {
-        return lines.filter { it.isNotBlank() }.map { line ->
-            line.map { it - '0' }
-        }
+        return lines.toIntGrid()
     }
 }

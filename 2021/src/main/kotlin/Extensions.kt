@@ -13,13 +13,13 @@ val <T> List<List<T>>.width: Int
         return length
     }
 
-fun <T> List<List<T>>.column(index: Int) : List<T> {
+fun <T> List<List<T>>.column(index: Int): List<T> {
     return map { it[index] }
 }
 
-data class Point(
-    val x: Int,
-    val y: Int,
+open class Point(
+    open val x: Int,
+    open val y: Int,
 ) {
 
     val cardinalAdjacent: List<Point>
@@ -29,7 +29,26 @@ data class Point(
             Point(x - 1, y),
             Point(x + 1, y),
         )
+
+    val ordinalAdjacent: List<Point>
+        get() = listOf(
+            Point(x - 1, y - 1),
+            Point(x + 1, y - 1),
+            Point(x - 1, y + 1),
+            Point(x + 1, y + 1),
+        )
+
+    val allAdjacent: List<Point>
+        get() = cardinalAdjacent + ordinalAdjacent
 }
+
+fun CharSequence.toIntList(): List<Int> = map { char ->
+    char - '0'
+}
+
+fun List<CharSequence>.toIntGrid(): List<List<Int>> =
+    filter { it.isNotBlank() }
+        .map { it.toIntList() }
 
 // region BinaryArray
 /**
