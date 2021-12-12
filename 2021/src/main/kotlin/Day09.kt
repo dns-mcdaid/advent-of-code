@@ -1,13 +1,5 @@
 object Day09 {
 
-    private operator fun List<List<Int>>.get(point: Point): Int {
-        return this[point.y][point.x]
-    }
-
-    private fun List<List<Int>>.getOrNull(point: Point): Int? {
-        return getOrNull(point.y)?.getOrNull(point.x)
-    }
-
     private fun isLowPoint(grid: List<List<Int>>, x: Int, y: Int): Boolean {
         val point = Point(x, y)
         return point.cardinalAdjacent.mapNotNull { adjacent ->
