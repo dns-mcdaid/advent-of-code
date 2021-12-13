@@ -40,6 +40,10 @@ data class Point(
 
     val allAdjacent: List<Point>
         get() = cardinalAdjacent + ordinalAdjacent
+
+    override fun toString(): String {
+        return "($x, $y)"
+    }
 }
 
 operator fun <T> List<List<T>>.get(point: Point): T {
