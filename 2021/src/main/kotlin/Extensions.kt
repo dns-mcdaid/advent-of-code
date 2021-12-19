@@ -30,6 +30,12 @@ data class Point(
             Point(x + 1, y),
         )
 
+    val downOrSide: List<Point>
+        get() = listOf(
+            Point(x, y + 1),
+            Point(x + 1, y),
+        )
+
     val ordinalAdjacent: List<Point>
         get() = listOf(
             Point(x - 1, y - 1),
@@ -40,6 +46,9 @@ data class Point(
 
     val allAdjacent: List<Point>
         get() = cardinalAdjacent + ordinalAdjacent
+
+    val isNegative: Boolean
+        get() = x < 0 || y < 0
 
     override fun toString(): String {
         return "($x, $y)"

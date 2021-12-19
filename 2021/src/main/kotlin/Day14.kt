@@ -33,7 +33,7 @@ object Day14 {
     fun differenceBetweenLeastAndMost(input: Input, size: Int): BigDecimal {
         println("Start: ${input.seed}")
         println(input.reference.size)
-        return (0 until size).fold(input.seed) { str, i ->
+        return (0 until size).fold(input.seed) { str, _ ->
             expand(str, input.reference)
         }.let(::findDifferenceBetweenLeastAndMost)
     }
