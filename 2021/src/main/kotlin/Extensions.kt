@@ -6,6 +6,14 @@ fun Int.pow(power: Int): Int {
     }
 }
 
+fun Long.pow(power: Int): Long {
+    return when (power) {
+        0 -> 1L
+        1 -> this
+        else -> this * pow(power - 1)
+    }
+}
+
 val <T> List<List<T>>.width: Int
     get() {
         val length = first().size
@@ -74,6 +82,18 @@ fun CharSequence.toIntList(): List<Int> = map { char ->
 fun List<CharSequence>.toIntGrid(): List<List<Int>> =
     filter { it.isNotBlank() }
         .map { it.toIntList() }
+
+val CharSequence.binaryLongValue: Long
+    get() = reversed().mapIndexed { index, c ->
+        when (c) {
+            '0' -> 0
+            '1' -> when (index) {
+                0 -> 1L
+                else -> 2L.pow(index)
+            }
+            else -> throw IllegalArgumentException("Non-binary string.")
+        }
+    }.sum()
 
 // region BinaryArray
 /**
