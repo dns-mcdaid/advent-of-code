@@ -3,7 +3,7 @@ import org.junit.Test
 
 class Day01Tests {
 
-    val testData = listOf(
+    private val testData = listOf(
         listOf(
             1000,
             2000,
