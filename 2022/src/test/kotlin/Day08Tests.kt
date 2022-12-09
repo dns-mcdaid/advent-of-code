@@ -22,6 +22,6 @@ class Day08Tests {
     @Test
     fun `Real data passes part 1`() {
         val result = Day08.countVisibleTrees(Day08.prepareData())
-        println("RESULT: $result")
+        assertEquals(1787, result)
     }
 }
