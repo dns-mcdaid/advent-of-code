@@ -22,6 +22,8 @@ class Day01Tests {
     """.trimIndent()
         .split("\n")
 
+    private val realData = Parser.readLinesFilteringBlank("input_01.txt")
+
     @Test
     fun `Test data passes part 1`() {
         val result = Day01.sumCalibrationValues(testData1)
@@ -30,21 +32,25 @@ class Day01Tests {
 
     @Test
     fun `Real data passes part 1`() {
-        val input = Day01.prepareData()
-        val result = Day01.sumCalibrationValues(input)
+        val result = Day01.sumCalibrationValues(realData)
         assertEquals(54081, result)
     }
 
     @Test
     fun `Test data passes part 2`() {
-        val result = Day01.sumCalibrationValues(testData2, includeWords = true)
+        val result = Day01.sumCalibrationValues(
+            input = testData2,
+            includeWords = true,
+        )
         assertEquals(281, result)
     }
 
     @Test
     fun `Real data passes part 2`() {
-        val input = Day01.prepareData()
-        val result = Day01.sumCalibrationValues(input, includeWords = true)
-        println(result)
+        val result = Day01.sumCalibrationValues(
+            input = realData,
+            includeWords = true,
+        )
+        assertEquals(54649, result)
     }
 }

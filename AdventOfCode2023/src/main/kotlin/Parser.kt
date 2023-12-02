@@ -10,6 +10,9 @@ object Parser {
 
     fun readLines(fileName: String): List<String> = getFile(fileName).readLines()
 
+    fun readLinesFilteringBlank(fileName: String): List<String> = readLines(fileName)
+        .filter { it.isNotBlank() }
+
     fun readText(fileName: String): String = getFile(fileName).readText()
 
     fun readIntList(fileName: String): List<Int> = readText(fileName)

@@ -59,17 +59,11 @@ object Day01 {
         input: List<String>,
         includeWords: Boolean = false,
     ): Int {
-        val calibrationValues = input.map { line ->
+        return input.sumOf { line ->
             findCalibrationValue(
                 input = line,
                 includeWords = includeWords,
             )
-        }.also { println(it) }
-        return calibrationValues.sum()
-    }
-
-    fun prepareData(): List<String> {
-        return Parser.readLines("input_01.txt")
-            .filter { it.isNotBlank() }
+        }
     }
 }
