@@ -27,8 +27,21 @@ class Day01Tests {
     @Test
     fun `Real data passes part 1`() {
         val (a, b) = realData
-        println(a)
         val result = Day01.findDeltas(a, b)
-        println(result)
+        assertEquals(1882714, result)
+    }
+
+    @Test
+    fun `Test data passes part 2`() {
+        val (a, b) = testData
+        val result = Day01.findSimilarities(a, b)
+        assertEquals(31, result)
+    }
+
+    @Test
+    fun `Real data passes part 2`() {
+        val (a, b) = realData
+        val result = Day01.findSimilarities(a, b)
+        assertEquals(19437052, result)
     }
 }

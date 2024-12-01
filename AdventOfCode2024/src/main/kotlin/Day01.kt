@@ -10,6 +10,16 @@ object Day01 {
         }.sum()
     }
 
+    fun findSimilarities(listA: List<Int>, listB: List<Int>): Int {
+        val bCache = mutableMapOf<Int, Int>()
+        return listA.sumOf { a ->
+            val occurrences = bCache[a] ?: listB.filter { it == a }
+                .size
+                .also { bCache[a] = it }
+            a * occurrences
+        }
+    }
+
     fun transformData(input: String): Pair<List<Int>, List<Int>> {
         return input.splitWhitespace()
             .filter { it.isNotBlank() }
